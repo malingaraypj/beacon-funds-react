@@ -2,39 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Charity Platform Design System - Warm, trustworthy colors that inspire generosity
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Trust Blue - Primary brand color */
+    --primary: 210 78% 46%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 65% 85%;
+    --primary-dark: 210 85% 35%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Hope Green - For success and donation actions */
+    --secondary: 142 76% 36%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 142 50% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Warm neutrals */
+    --muted: 210 40% 98%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Action Orange - For CTAs */
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 25 85% 85%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 210 78% 46%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210 78% 46%), hsl(210 85% 35%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 85% 25%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 100% 45%));
+
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(210 40% 0% / 0.1), 0 2px 4px -2px hsl(210 40% 0% / 0.1);
+    --shadow-card-hover: 0 10px 15px -3px hsl(210 40% 0% / 0.1), 0 4px 6px -4px hsl(210 40% 0% / 0.1);
+    --shadow-button: 0 1px 2px 0 hsl(210 40% 0% / 0.05);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --radius: 0.5rem;
 
@@ -56,33 +79,46 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 215 28% 9%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 215 28% 11%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 215 28% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 210 78% 60%;
+    --primary-foreground: 215 28% 9%;
+    --primary-light: 210 40% 25%;
+    --primary-dark: 210 85% 50%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 142 65% 45%;
+    --secondary-foreground: 215 28% 9%;
+    --secondary-light: 142 30% 25%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 25% 15%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 25 85% 60%;
+    --accent-foreground: 215 28% 9%;
+    --accent-light: 25 40% 25%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 65% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 210 78% 60%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(210 78% 60%), hsl(210 85% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(215 28% 11%), hsl(215 25% 15%));
+    --gradient-success: linear-gradient(135deg, hsl(142 65% 45%), hsl(142 75% 35%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 85% 60%), hsl(25 90% 50%));
+
+    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
+    --shadow-card-hover: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -4px hsl(0 0% 0% / 0.3);
+    --shadow-button: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +136,76 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer components {
+  /* Hero button variant */
+  .btn-hero {
+    @apply bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-accent-foreground;
+    @apply px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl;
+    @apply transition-all duration-300 transform hover:scale-105;
+  }
+
+  /* Campaign card styles */
+  .campaign-card {
+    @apply bg-card rounded-xl p-6 border border-border/50;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .campaign-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    @apply -translate-y-1;
+  }
+
+  /* Progress bar styles */
+  .progress-bar {
+    @apply w-full bg-muted rounded-full h-3 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-secondary to-secondary/80 rounded-full;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Form styles */
+  .form-input {
+    @apply w-full px-4 py-3 border border-input rounded-lg bg-background;
+    @apply focus:ring-2 focus:ring-primary/20 focus:border-primary;
+    @apply transition-all duration-200;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-foreground mb-2;
   }
 }

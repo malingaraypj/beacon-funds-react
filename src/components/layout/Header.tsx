@@ -1,21 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, LogOut, User, Wallet } from "lucide-react";
+import { Heart, LogOut, User, Wallet, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import { useAdmin } from "@/contexts/AdminContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const { user, logout, isAuthenticated } = useAuth();
+  const { admin, logoutAdmin, isAdmin } = useAdmin();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
+    navigate("/");
+  };
+
+  const handleAdminLogout = () => {
+    logoutAdmin();
     navigate("/");
   };
 
@@ -46,15 +54,39 @@ const Header = () => {
           >
             Campaigns
           </Link>
-          <Link
-            to="/create"
-            className="text-foreground/80 hover:text-foreground transition-colors"
-          >
-            Create Campaign
-          </Link>
+          {isAuthenticated && (
+            <Link
+              to="/create"
+              className="text-foreground/80 hover:text-foreground transition-colors"
+            >
+              Create Campaign
+            </Link>
+          )}
+          {isAdmin && (
+            <Link
+              to="/admin"
+              className="text-destructive hover:text-destructive/80 transition-colors flex items-center gap-1"
+            >
+              <Shield className="w-4 h-4" />
+              Admin
+            </Link>
+          )}
         </nav>
 
         <div className="flex items-center space-x-4">
+          {/* Admin Access */}
+          {!isAdmin && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate("/admin/login")}
+              className="text-destructive hover:text-destructive/80"
+            >
+              <Shield className="w-4 h-4 mr-1" />
+              Admin
+            </Button>
+          )}
+
           {isAuthenticated ? (
             <div className="flex items-center space-x-4">
               <div className="hidden md:flex items-center space-x-2 px-3 py-2 bg-muted rounded-lg">
@@ -76,6 +108,20 @@ const Header = () => {
                     <User className="w-4 h-4 mr-2" />
                     Profile
                   </DropdownMenuItem>
+                  {isAdmin && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => navigate("/admin")}>
+                        <Shield className="w-4 h-4 mr-2" />
+                        Admin Dashboard
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={handleAdminLogout}>
+                        <LogOut className="w-4 h-4 mr-2" />
+                        Logout Admin
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>
                     <LogOut className="w-4 h-4 mr-2" />
                     Logout

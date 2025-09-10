@@ -42,27 +42,34 @@ export const authAPI = {
   getProfile: () => API.get("/auth/profile"),
 };
 
-// Campaign endpoints
+// Campaign endpoints - aligned with backend specification
 export const campaignAPI = {
+  // GET /api/campaigns - Fetch all campaigns
   getCampaigns: () => API.get("/campaigns"),
   
+  // GET /api/campaigns/:id - Fetch single campaign with donation history
   getCampaign: (id: string) => API.get(`/campaigns/${id}`),
   
+  // POST /api/campaigns - Create new campaign
   createCampaign: (formData: {
     title: string;
     description: string;
-    target: number;
+    target: number; // targetAmount in backend
     deadline: string;
-    receiver: string;
+    receiver: string; // receiver wallet address
   }) => API.post("/campaigns", formData),
   
+  // POST /api/campaigns/:id/donate - Call smart contract donate() and store donor info
   donate: (id: string, amount: number) =>
     API.post(`/campaigns/${id}/donate`, { amount }),
   
+  // POST /api/campaigns/:id/withdraw - Trigger smart contract withdrawFunds()
   withdraw: (id: string) => API.post(`/campaigns/${id}/withdraw`),
   
+  // POST /api/campaigns/:id/refund - Trigger smart contract refund()
   refund: (id: string) => API.post(`/campaigns/${id}/refund`),
   
+  // GET /api/campaigns/:id/donations - Get donation history (part of campaign details)
   getDonations: (id: string) => API.get(`/campaigns/${id}/donations`),
 };
 

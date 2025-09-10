@@ -17,11 +17,15 @@ import { cn } from "@/lib/utils";
 
 const CreateCampaign = () => {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    target: "",
-    deadline: undefined as Date | undefined,
-    receiver: "",
+    title: "Help Build Clean Water Wells in Rural Communities",
+    description: "Providing access to clean water for families in underserved areas. Your donation helps build sustainable water infrastructure that will serve communities for generations to come. We partner with local organizations to ensure proper maintenance and community ownership of these vital resources.",
+    target: "25000",
+    deadline: (() => {
+      const futureDate = new Date();
+      futureDate.setMonth(futureDate.getMonth() + 3);
+      return futureDate;
+    })(),
+    receiver: "0x1234567890123456789012345678901234567890",
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});

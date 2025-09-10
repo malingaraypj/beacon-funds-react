@@ -10,11 +10,11 @@ import { useAuth } from "@/contexts/AuthContext";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    walletAddress: "",
+    username: "testuser",
+    email: "test@example.com",
+    password: "test123",
+    confirmPassword: "test123",
+    walletAddress: "0x1234567890123456789012345678901234567890",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
